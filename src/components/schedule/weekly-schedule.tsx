@@ -200,7 +200,7 @@ export default function WeeklySchedule() {
                       ))}
                     {tempSchedule[renderDate]?.length > 6 && (
                       <Link
-                        href={`/hr/schedule/?date=${renderDate}`}
+                        href={`/hr/schedule/daily/?date=${renderDate}`}
                         className='font-bold mt-[15px]'
                         scroll={false}
                       >
