@@ -1,13 +1,8 @@
-'use client';
-import { useSearchParams } from 'next/navigation';
-import { Modal } from 'src/components/ui';
 import { convertStringDateFormat } from 'src/lib/utils';
 
-export default function ScheduleModal() {
-  const date = useSearchParams().get('date');
-
+export default function DailySchedule({ date }: { date: string }) {
   return (
-    <Modal className='text-center px-[60px]'>
+    <div>
       <h1 className='font-bold text-[20px] mb-[20px]'>
         {date && convertStringDateFormat(date)}
       </h1>
@@ -37,6 +32,6 @@ export default function ScheduleModal() {
           <span>3면접</span>
         </li>
       </ul>
-    </Modal>
+    </div>
   );
 }

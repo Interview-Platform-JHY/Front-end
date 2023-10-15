@@ -1,6 +1,5 @@
 'use client';
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import cn from 'clsx';
 import {
   format,
@@ -25,7 +24,11 @@ import { Button } from '../ui';
 import { date } from 'src/data/schedule/weekly-schedule';
 
 // TODO: 스케줄 가져오는 함수를 props로 받도록 해야 함
-export default function WeeklySchedule() {
+export default function WeeklySchedule({
+  handleClickMore,
+}: {
+  handleClickMore: (date: string) => void;
+}) {
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [currentStartWeekDay, setCurrentStartWeekDay] = useState<Date>(
@@ -199,13 +202,14 @@ export default function WeeklySchedule() {
                         </p>
                       ))}
                     {tempSchedule[renderDate]?.length > 6 && (
-                      <Link
-                        href={`/hr/schedule/daily/?date=${renderDate}`}
+                      <Button
                         className='font-bold mt-[15px]'
-                        scroll={false}
+                        onClick={() => {
+                          handleClickMore(renderDate);
+                        }}
                       >
                         더보기
-                      </Link>
+                      </Button>
                     )}
                   </td>
                 );
