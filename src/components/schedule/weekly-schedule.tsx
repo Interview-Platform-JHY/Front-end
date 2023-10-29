@@ -1,5 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import cn from 'clsx';
 import {
   format,
@@ -22,6 +24,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Button } from '../ui';
 import { date } from 'src/data/schedule/weekly-schedule';
+import { getDailyScheduleUrl } from 'src/lib/hr/schedule';
 
 // TODO: 스케줄 가져오는 함수를 props로 받도록 해야 함
 export default function WeeklySchedule({
@@ -29,6 +32,9 @@ export default function WeeklySchedule({
 }: {
   handleClickMore: (date: string) => void;
 }) {
+  const pathname = usePathname();
+  const splitedPathname = pathname.split('/');
+  const businessNumber = splitedPathname[splitedPathname.length - 1];
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [currentStartWeekDay, setCurrentStartWeekDay] = useState<Date>(
@@ -42,7 +48,7 @@ export default function WeeklySchedule({
   type scheduleType = {
     [key: string]: string[];
   };
-  const tempDate1 = '2023-10-03';
+  const tempDate1 = '2023-10-29';
   const tempDate2 = '2023-10-05';
   const tempSchedule: scheduleType = {
     [tempDate1]: [
@@ -197,9 +203,17 @@ export default function WeeklySchedule({
                     {tempSchedule[renderDate]
                       ?.slice(0, 6)
                       .map((schedule, scheduleIndex) => (
-                        <p key={`schedule-${renderDate}-${scheduleIndex}`}>
+                        <Link
+                          className='block'
+                          href={getDailyScheduleUrl(
+                            businessNumber,
+                            renderDate,
+                            schedule
+                          )}
+                          key={`schedule-${renderDate}-${scheduleIndex}`}
+                        >
                           {schedule}
-                        </p>
+                        </Link>
                       ))}
                     {tempSchedule[renderDate]?.length > 6 && (
                       <Button
