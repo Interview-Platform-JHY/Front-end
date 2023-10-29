@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { DailySchedule, WeeklySchedule } from 'src/components/schedule';
 import { Modal } from 'src/components/ui';
 
-export default function HR() {
+export default function HR({ params }: { params: { id: string } }) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<string>('');
 
