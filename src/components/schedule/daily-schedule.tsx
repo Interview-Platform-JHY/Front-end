@@ -2,7 +2,7 @@ import { convertStringDateFormat } from 'src/lib/utils';
 
 export default function DailySchedule({ date }: { date: string }) {
   return (
-    <div>
+    <div className='px-[20px]'>
       <h1 className='font-bold text-[20px] mb-[20px]'>
         {date && convertStringDateFormat(date)}
       </h1>
