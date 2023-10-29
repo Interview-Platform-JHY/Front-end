@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
-import { DailySchedule, WeeklySchedule } from 'src/components/schedule';
+import { WeeklySchedule } from 'src/components/schedule';
+import { DailySchedule } from 'src/components/hr/schedule';
 import { Modal } from 'src/components/ui';
 
 export default function HR({ params }: { params: { id: string } }) {
@@ -24,7 +25,10 @@ export default function HR({ params }: { params: { id: string } }) {
       <WeeklySchedule handleClickMore={handleClickMore} />
       {isModalOpen && (
         <Modal handleClose={changeModalOpen}>
-          <DailySchedule date={selectedDate} />
+          <DailySchedule
+            businessNumber={params.id}
+            date={selectedDate}
+          />
         </Modal>
       )}
     </section>
