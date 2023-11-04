@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { format } from 'date-fns';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Resume } from 'src/components/common';
+import { Resume, DeleteInformationModal } from 'src/components/common';
 import { Button, Modal } from 'src/components/ui';
 import { Checkbox } from 'src/components/ui/checkbox';
 import {
@@ -30,6 +30,7 @@ export default function HRDailySchedule({
   const router = useRouter();
   const date = useSearchParams().get('date');
   const [isResumeModalOpen, setIsResumeModalOpen] = useState<boolean>(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const dateWithHyphens = date && formatDateWithHyphens(date.slice(0, 8));
   const timeRange = date && formatTimeRange(date.slice(8));
   const tableHeader = ['직군', '면접관', '면접자', '면접장', '수정'];
@@ -89,12 +90,32 @@ export default function HRDailySchedule({
     setIsResumeModalOpen((prevResumeModalOpen) => !prevResumeModalOpen);
   };
 
+  const changeDeleteModalOpen = () => {
+    setIsDeleteModalOpen((prevDeleteModalOpen) => !prevDeleteModalOpen);
+  };
+
+  const handleDeleteScheduleClick = () => {
+    changeDeleteModalOpen();
+  };
+
   const handleIntervieweeClick = () => {
     changeResumeModalOpen();
   };
 
   const handleResumeModalClose = () => {
     changeResumeModalOpen();
+  };
+
+  const handleDeleteModalConfirmClick = () => {
+    changeDeleteModalOpen();
+  };
+
+  const handleDeleteModalDeleteClick = () => {
+    changeDeleteModalOpen();
+  };
+
+  const handleDeleteModalClose = () => {
+    changeDeleteModalOpen();
   };
 
   return (
@@ -113,7 +134,10 @@ export default function HRDailySchedule({
           <Button className='px-5 py-2 bg-green text-white text-base font-bold'>
             등록
           </Button>
-          <Button className='px-5 py-2 bg-red-500 text-white text-base font-bold'>
+          <Button
+            className='px-5 py-2 bg-red-500 text-white text-base font-bold'
+            onClick={handleDeleteScheduleClick}
+          >
             삭제
           </Button>
         </div>
@@ -180,6 +204,19 @@ export default function HRDailySchedule({
         >
           <Resume></Resume>
         </Modal>
+      )}
+      {isDeleteModalOpen && (
+        <DeleteInformationModal
+          message={
+            <p className='leading-[normal]'>
+              정말 선택하신 면접 일정을 삭제 하시겠어요? <br />
+              삭제된 일정은 복구가 불가능합니다.
+            </p>
+          }
+          handleConfirmClick={handleDeleteModalConfirmClick}
+          handleDeleteClick={handleDeleteModalDeleteClick}
+          handleClose={handleDeleteModalClose}
+        ></DeleteInformationModal>
       )}
     </section>
   );
