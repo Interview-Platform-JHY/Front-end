@@ -1,8 +1,10 @@
 'use client';
+import { useState } from 'react';
 import Link from 'next/link';
 import { format } from 'date-fns';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Button } from 'src/components/ui';
+import { Resume } from 'src/components/common';
+import { Button, Modal } from 'src/components/ui';
 import { Checkbox } from 'src/components/ui/checkbox';
 import {
   Table,
@@ -27,6 +29,7 @@ export default function HRDailySchedule({
 }) {
   const router = useRouter();
   const date = useSearchParams().get('date');
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState<boolean>(false);
   const dateWithHyphens = date && formatDateWithHyphens(date.slice(0, 8));
   const timeRange = date && formatTimeRange(date.slice(8));
   const tableHeader = ['직군', '면접관', '면접자', '면접장', '수정'];
@@ -35,10 +38,10 @@ export default function HRDailySchedule({
     {
       job: '웹 프론트엔드 개발',
       Interviewers: [
-        '123412345 신기술개발 김부장',
-        '123412345 신기술개발 김부장',
-        '123412345 신기술개발 김부장',
-        '123412345 신기술개발 김부장',
+        '123412345 신기술개발 유하민',
+        '123412345 신기술개발 유하민',
+        '123412345 신기술개발 유하민',
+        '123412345 신기술개발 유하민',
       ],
       interviewees: [
         '123412345 프론트엔드 개발 남예준',
@@ -51,10 +54,10 @@ export default function HRDailySchedule({
     {
       job: '웹 프론트엔드 개발',
       Interviewers: [
-        '123412345 신기술개발 김부장',
-        '123412345 신기술개발 김부장',
-        '123412345 신기술개발 김부장',
-        '123412345 신기술개발 김부장',
+        '123412345 신기술개발 유하민',
+        '123412345 신기술개발 유하민',
+        '123412345 신기술개발 유하민',
+        '123412345 신기술개발 유하민',
       ],
       interviewees: [
         '123412345 프론트엔드 개발 남예준',
@@ -67,10 +70,10 @@ export default function HRDailySchedule({
     {
       job: '웹 프론트엔드 개발',
       Interviewers: [
-        '123412345 신기술개발 김부장',
-        '123412345 신기술개발 김부장',
-        '123412345 신기술개발 김부장',
-        '123412345 신기술개발 김부장',
+        '123412345 신기술개발 유하민',
+        '123412345 신기술개발 유하민',
+        '123412345 신기술개발 유하민',
+        '123412345 신기술개발 유하민',
       ],
       interviewees: [
         '123412345 프론트엔드 개발 남예준',
@@ -81,6 +84,18 @@ export default function HRDailySchedule({
       url: 'https://test5.com',
     },
   ];
+
+  const changeResumeModalOpen = () => {
+    setIsResumeModalOpen((prevResumeModalOpen) => !prevResumeModalOpen);
+  };
+
+  const handleIntervieweeClick = () => {
+    changeResumeModalOpen();
+  };
+
+  const handleResumeModalClose = () => {
+    changeResumeModalOpen();
+  };
 
   return (
     <section className='p-[40px]'>
@@ -134,6 +149,7 @@ export default function HRDailySchedule({
                   {data.interviewees.map((interviewee, intervieweeIndex) => (
                     <p
                       className='hover:cursor-pointer hover:underline'
+                      onClick={handleIntervieweeClick}
                       key={`table-cell-${rowIndex}-${intervieweeIndex}`}
                     >
                       {interviewee}
@@ -157,6 +173,14 @@ export default function HRDailySchedule({
           </TableBody>
         </Table>
       </div>
+      {isResumeModalOpen && (
+        <Modal
+          className='h-3/4 max-h-[700px] overflow-y-auto'
+          handleClose={handleResumeModalClose}
+        >
+          <Resume></Resume>
+        </Modal>
+      )}
     </section>
   );
 }
