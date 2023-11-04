@@ -14,7 +14,7 @@ export default function Sidebar() {
   };
 
   return (
-    <div className='fixed left-0 top-0 w-[280px] h-[100vh] bg-white border-solid border-r-[1px] border-gray-300 p-[30px]'>
+    <div className='fixed left-0 top-0 z-10 w-[280px] h-[100vh] bg-white border-solid border-r-[1px] border-gray-300 p-[30px]'>
       <div className='flex gap-[20px] items-center'>
         <div className='w-[60px] h-[60px] bg-gray-500 rounded-full' />
         <p className='text-[22px] text-gray-800 font-bold leading-normal'>
