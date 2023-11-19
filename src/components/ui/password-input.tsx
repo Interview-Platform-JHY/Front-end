@@ -37,8 +37,8 @@ export default function PasswordInput(props: PasswordInputProps) {
     <div
       className={cn(
         className,
-        'flex rounded-[10px] p-[10px] border-solid border-[1px] border-gray-600',
-        isFocus && 'outline-none border-[2px] border-gray-700'
+        'flex rounded-[10px] p-[10px] border-solid border border-gray-400',
+        isFocus && 'outline-none border-gray-600 shadow-xs shadow-gray-600'
       )}
       onFocus={handleFocusInOut}
       onBlur={handleFocusInOut}
