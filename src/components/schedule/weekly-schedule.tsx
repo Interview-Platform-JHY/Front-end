@@ -11,14 +11,7 @@ import {
   lastDayOfWeek,
   addDays,
 } from 'date-fns';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-  SelectGroup,
-} from 'src/components/ui/select';
+import { Select } from 'src/components/ui';
 import { selectOptionType } from 'src/types/utils/selectOption';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -139,23 +132,11 @@ export default function WeeklySchedule({
           onClick={handleClickRightArrow}
         />
       </div>
-      <Select>
-        <SelectTrigger className='absolute top-[50px] right-[55px] w-[130px]'>
-          <SelectValue placeholder='직군 선택' />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            {tempOptions.map(({ key, name, value }) => (
-              <SelectItem
-                key={key}
-                value={value}
-              >
-                {name}
-              </SelectItem>
-            ))}
-          </SelectGroup>
-        </SelectContent>
-      </Select>
+      <Select
+        className='absolute top-[50px] right-[55px] w-[130px]'
+        placeholder='직군 선택'
+        options={tempOptions}
+      ></Select>
       <Button
         className='uppercase font-bold text-[18px] mt-[10px]'
         onClick={handleClickToday}

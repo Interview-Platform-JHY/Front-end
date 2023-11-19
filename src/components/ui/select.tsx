@@ -3,10 +3,9 @@
 import * as React from 'react';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { Check, ChevronDown } from 'lucide-react';
+import type { selectOptionType } from 'src/types/utils/selectOption';
 
 import { cn } from 'src/lib/utils';
-
-const Select = SelectPrimitive.Root;
 
 const SelectGroup = SelectPrimitive.Group;
 
@@ -109,13 +108,37 @@ const SelectSeparator = React.forwardRef<
 ));
 SelectSeparator.displayName = SelectPrimitive.Separator.displayName;
 
-export {
-  Select,
-  SelectGroup,
-  SelectValue,
-  SelectTrigger,
-  SelectContent,
-  SelectLabel,
-  SelectItem,
-  SelectSeparator,
-};
+export default function Select({
+  className,
+  id,
+  placeholder,
+  options,
+}: {
+  className?: string;
+  id?: string;
+  placeholder: string;
+  options: selectOptionType[];
+}) {
+  return (
+    <SelectPrimitive.Root>
+      <SelectTrigger className={className}>
+        <SelectValue
+          id={id}
+          placeholder={placeholder}
+        />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          {options.map(({ key, name, value }) => (
+            <SelectItem
+              key={key}
+              value={value}
+            >
+              {name}
+            </SelectItem>
+          ))}
+        </SelectGroup>
+      </SelectContent>
+    </SelectPrimitive.Root>
+  );
+}
