@@ -32,10 +32,10 @@ export default function Modal({
 
   return (
     <div
-      className='outer-layer fixed flex justify-center items-center left-0 top-0 w-[100vw] h-[100vh] bg-gray-50 z-20'
+      className='outer-layer fixed flex justify-center items-center left-0 top-0 w-[100vw] h-[100vh] bg-gray-550 z-20'
       onClick={handleClickOuterLayer}
     >
-      <div className={cn(className, 'bg-white  rounded-[20px] p-[40px]')}>
+      <div className={cn(className, 'bg-white rounded-[20px] p-10')}>
         {children}
       </div>
     </div>

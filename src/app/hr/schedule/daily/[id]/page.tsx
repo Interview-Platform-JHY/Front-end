@@ -208,7 +208,7 @@ export default function HRDailySchedule({
       {isDeleteModalOpen && (
         <DeleteInformationModal
           message={
-            <p className='leading-[normal]'>
+            <p className='p-10'>
               정말 선택하신 면접 일정을 삭제 하시겠어요? <br />
               삭제된 일정은 복구가 불가능합니다.
             </p>

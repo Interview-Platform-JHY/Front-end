@@ -14,19 +14,19 @@ export default function DeleteInformationModal({
 }) {
   return (
     <Modal
-      className='text-center pb-0'
+      className='text-center !p-0'
       handleClose={handleClose}
     >
       {message}
-      <div className='flex mt-5 pt-5 pb-6'>
+      <div className='flex justify-between border-solid border-gray-500 border-t'>
         <Button
-          className='w-1/2 text-gray-600 text-lg font-bold'
+          className='basis-1/2 py-3 border-solid border-gray-500 border-r rounded-none text-gray-600 font-bold'
           onClick={handleConfirmClick}
         >
           취소
         </Button>
         <Button
-          className='w-1/2 text-red-500 text-lg font-bold'
+          className='basis-1/2 py-3 text-red-500 font-bold'
           onClick={handleDeleteClick}
         >
           삭제

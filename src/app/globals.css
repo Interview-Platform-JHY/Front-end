@@ -8,12 +8,12 @@
     --foreground: 0, 0, 0;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
-    --gray-50: 0, 0, 0, 0.3;
     --gray-100: #f5f7f9;
     --gray-200: #f5f5fa;
     --gray-300: #e8edf1;
     --gray-400: #dfdfdf;
     --gray-500: #d9d9d9;
+    --gray-550: 0, 0, 0, 0.3;
     --gray-600: #afaebf;
     --gray-700: #7e7e8f;
     --gray-800: #828292;
