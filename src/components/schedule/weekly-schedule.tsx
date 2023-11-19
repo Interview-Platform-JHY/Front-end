@@ -34,7 +34,6 @@ export default function WeeklySchedule({
 }) {
   const pathname = usePathname();
   const splitedPathname = pathname.split('/');
-  const businessNumber = splitedPathname[splitedPathname.length - 1];
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [currentStartWeekDay, setCurrentStartWeekDay] = useState<Date>(
@@ -48,8 +47,8 @@ export default function WeeklySchedule({
   type scheduleType = {
     [key: string]: string[];
   };
-  const tempDate1 = '2023-10-29';
-  const tempDate2 = '2023-10-05';
+  const tempDate1 = '2023-11-19';
+  const tempDate2 = '2023-11-23';
   const tempSchedule: scheduleType = {
     [tempDate1]: [
       '10:00 ~ 11:00 3면접',
@@ -205,11 +204,7 @@ export default function WeeklySchedule({
                       .map((schedule, scheduleIndex) => (
                         <Link
                           className='block'
-                          href={getDailyScheduleUrl(
-                            businessNumber,
-                            renderDate,
-                            schedule
-                          )}
+                          href={getDailyScheduleUrl(renderDate, schedule)}
                           key={`schedule-${renderDate}-${scheduleIndex}`}
                         >
                           {schedule}

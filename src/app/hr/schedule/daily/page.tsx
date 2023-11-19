@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { format } from 'date-fns';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -22,11 +22,7 @@ import {
   getKoreanWeekday,
 } from 'src/lib/utils';
 
-export default function HRDailySchedule({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default function HRDailySchedule() {
   const router = useRouter();
   const date = useSearchParams().get('date');
   const [isResumeModalOpen, setIsResumeModalOpen] = useState<boolean>(false);
@@ -117,6 +113,12 @@ export default function HRDailySchedule({
   const handleDeleteModalClose = () => {
     changeDeleteModalOpen();
   };
+
+  useEffect(() => {
+    if (!date) {
+      router.push('/hr');
+    }
+  }, []);
 
   return (
     <section className='p-[40px]'>
