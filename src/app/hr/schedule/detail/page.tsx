@@ -22,7 +22,7 @@ import {
   getKoreanWeekday,
 } from 'src/lib/utils';
 
-export default function HRDailySchedule() {
+export default function HRScheduleDetail() {
   const router = useRouter();
   const date = useSearchParams().get('date');
   const [isResumeModalOpen, setIsResumeModalOpen] = useState<boolean>(false);
@@ -133,9 +133,12 @@ export default function HRDailySchedule() {
       )}
       <div className='bg-white mt-5 rounded-lg px-6 pt-5 pb-8 min-w-[900px]'>
         <div className='flex justify-end gap-4'>
-          <Button className='px-5 py-2 bg-green text-white text-base font-bold'>
+          <Link
+            className='px-5 py-2 bg-green rounded-[10px] text-white text-base font-bold'
+            href='/hr/schedule/create'
+          >
             등록
-          </Button>
+          </Link>
           <Button
             className='px-5 py-2 bg-red-500 text-white text-base font-bold'
             onClick={handleDeleteScheduleClick}
