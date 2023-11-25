@@ -195,7 +195,9 @@ export default function HRScheduleDetail() {
                   </Link>
                 </TableCell>
                 <TableCell>
-                  <EditIcon className='text-gray-800 cursor-pointer'></EditIcon>
+                  <Link href={`edit/24`}>
+                    <EditIcon className='text-gray-800 cursor-pointer'></EditIcon>
+                  </Link>
                 </TableCell>
               </TableRow>
             ))}
