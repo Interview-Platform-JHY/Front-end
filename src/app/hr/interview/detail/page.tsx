@@ -22,7 +22,7 @@ import {
   getKoreanWeekday,
 } from 'src/lib/utils';
 
-export default function HRScheduleDetail() {
+export default function HRInterviewDetail() {
   const router = useRouter();
   const date = useSearchParams().get('date');
   const [isResumeModalOpen, setIsResumeModalOpen] = useState<boolean>(false);
@@ -135,7 +135,7 @@ export default function HRScheduleDetail() {
         <div className='flex justify-end gap-4'>
           <Link
             className='px-5 py-2 bg-green rounded-[10px] text-white text-base font-bold'
-            href='/hr/schedule/create'
+            href='/hr/interview/create'
           >
             등록
           </Link>

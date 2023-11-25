@@ -6,7 +6,7 @@ import { Button, CalendarSelect, TextInput } from 'src/components/ui';
 import { Select } from 'src/components/ui';
 import type { selectOptionType } from 'src/types/utils/selectOption';
 
-export default function HRScheduleCreate() {
+export default function HRInterviewCreate() {
   const router = useRouter();
   const [position, setPosition] = useState<string>('');
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
