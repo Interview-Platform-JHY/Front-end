@@ -14,6 +14,7 @@ import {
 } from 'src/components/ui/table';
 
 export default function HRRecruitment() {
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const tableHeader = [
     '모집 분야',
     '모집 시작 일시',
@@ -58,6 +59,26 @@ export default function HRRecruitment() {
     },
   ];
 
+  const changeDeleteModalOpen = () => {
+    setIsDeleteModalOpen((prevDeleteModalOpen) => !prevDeleteModalOpen);
+  };
+
+  const handleDeleteScheduleClick = () => {
+    changeDeleteModalOpen();
+  };
+
+  const handleDeleteModalConfirmClick = () => {
+    changeDeleteModalOpen();
+  };
+
+  const handleDeleteModalDeleteClick = () => {
+    changeDeleteModalOpen();
+  };
+
+  const handleDeleteModalClose = () => {
+    changeDeleteModalOpen();
+  };
+
   return (
     <section className='p-[40px]'>
       <h3 className='text-[25px] font-bold leading-normal'>모집 일정</h3>
@@ -71,7 +92,7 @@ export default function HRRecruitment() {
           </Link>
           <Button
             className='px-5 py-2 bg-red-500 text-white text-base font-bold'
-            // onClick={handleDeleteScheduleClick}
+            onClick={handleDeleteScheduleClick}
           >
             삭제
           </Button>
@@ -109,11 +130,11 @@ export default function HRRecruitment() {
           </TableBody>
         </Table>
       </div>
-      {/* {isDeleteModalOpen && (
+      {isDeleteModalOpen && (
         <DeleteInformationModal
           message={
             <p className='p-10'>
-              정말 선택하신 면접 일정을 삭제 하시겠어요? <br />
+              정말 선택하신 모집 일정을 삭제 하시겠어요? <br />
               삭제된 일정은 복구가 불가능합니다.
             </p>
           }
@@ -121,7 +142,7 @@ export default function HRRecruitment() {
           handleDeleteClick={handleDeleteModalDeleteClick}
           handleClose={handleDeleteModalClose}
         ></DeleteInformationModal>
-      )} */}
+      )}
     </section>
   );
 }
