@@ -1,13 +1,17 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import cn from 'clsx';
 import { menu } from 'src/data/hr/menu';
 import type { menuType } from 'src/types/utils/menu';
-import s from './Sidebar.module.css';
 
 export default function Sidebar() {
-  const [selectedMenuId, setSelectedMenuId] = useState<string>('home');
+  const pathname = usePathname();
+  const initialMenuId = pathname.split('/')[2]
+    ? pathname.split('/')[2]
+    : 'home';
+  const [selectedMenuId, setSelectedMenuId] = useState<string>(initialMenuId);
 
   const handleClick = (id: string) => {
     setSelectedMenuId(id);
