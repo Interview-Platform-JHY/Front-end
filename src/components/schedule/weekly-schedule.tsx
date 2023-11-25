@@ -28,6 +28,7 @@ export default function WeeklySchedule({
   const pathname = usePathname();
   const splitedPathname = pathname.split('/');
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
+  const [occupation, setOccupation] = useState<string>('');
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [currentStartWeekDay, setCurrentStartWeekDay] = useState<Date>(
     startOfWeek(currentMonth)
@@ -112,10 +113,6 @@ export default function WeeklySchedule({
     changeCurrentMonth(today);
   };
 
-  useEffect(() => {
-    console.log(currentStartWeekDay, currentLastWeekDay, today);
-  }, [currentStartWeekDay, currentLastWeekDay, today]);
-
   return (
     <div className='bg-white relative h-[calc(100vh-235px)] p-[55px] rounded-[10px]'>
       <div className='flex justify-center items-center gap-[10px] leading-normal'>
@@ -136,6 +133,7 @@ export default function WeeklySchedule({
         className='absolute top-[50px] right-[55px] w-[130px]'
         placeholder='직군 선택'
         options={tempOptions}
+        handleStateChange={setOccupation}
       ></Select>
       <Button
         className='uppercase font-bold text-[18px] mt-[10px]'

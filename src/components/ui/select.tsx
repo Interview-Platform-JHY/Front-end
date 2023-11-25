@@ -1,6 +1,5 @@
 'use client';
-
-import * as React from 'react';
+import React, { Dispatch, SetStateAction, useCallback } from 'react';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { Check, ChevronDown } from 'lucide-react';
 import type { selectOptionType } from 'src/types/utils/selectOption';
@@ -113,14 +112,20 @@ export default function Select({
   id,
   placeholder,
   options,
+  handleStateChange,
 }: {
   className?: string;
   id?: string;
   placeholder: string;
   options: selectOptionType[];
+  handleStateChange: Dispatch<SetStateAction<string>>;
 }) {
+  const handleValueChange = (value: string) => {
+    handleStateChange(value);
+  };
+
   return (
-    <SelectPrimitive.Root>
+    <SelectPrimitive.Root onValueChange={handleValueChange}>
       <SelectTrigger className={className}>
         <SelectValue
           id={id}

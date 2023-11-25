@@ -49,7 +49,7 @@ export default function Login({ params }: { params: { id: string } }) {
           <Button
             className='bg-green text-white w-full h-[50px]'
             type='submit'
-            isLoading={isLoading}
+            loading={isLoading}
           >
             <span className='text-[20px] font-bold'>로그인</span>
           </Button>
