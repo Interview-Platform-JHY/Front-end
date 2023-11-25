@@ -1,11 +1,13 @@
 'use client';
 import { Dispatch, useState, useEffect, SetStateAction } from 'react';
+import { useRouter } from 'next/navigation';
 import CloseIcon from '@mui/icons-material/Close';
 import { Button, CalendarSelect, TextInput } from 'src/components/ui';
 import { Select } from 'src/components/ui';
 import type { selectOptionType } from 'src/types/utils/selectOption';
 
 export default function HRScheduleCreate() {
+  const router = useRouter();
   const [position, setPosition] = useState<string>('');
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
   const [endDate, setEndDate] = useState<Date | undefined>(undefined);
@@ -103,11 +105,6 @@ export default function HRScheduleCreate() {
     },
   ];
 
-  const handleSubmit = (e: any) => {
-    console.log('submit');
-    e.preventDefault();
-  };
-
   const checkCanSubmit = () => {
     if (
       position !== '' &&
@@ -146,6 +143,15 @@ export default function HRScheduleCreate() {
     setSelectedArray((prevSelectedArray) =>
       prevSelectedArray.filter((interviewer) => interviewer !== targetValue)
     );
+  };
+
+  const handleSubmit = (e: any) => {
+    console.log('submit');
+    e.preventDefault();
+  };
+
+  const handleCancelClick = () => {
+    router.back();
   };
 
   useEffect(() => {
@@ -358,12 +364,14 @@ export default function HRScheduleCreate() {
             <Button
               className='px-5 py-2 bg-green rounded-[10px] text-white text-base font-bold'
               disabled={!canSubmit}
+              type='submit'
             >
               등록
             </Button>
             <Button
               className='px-5 py-2 bg-gray-100 text-gray-600 text-base font-bold'
-              type='submit'
+              type='button'
+              onClick={handleCancelClick}
             >
               취소
             </Button>
