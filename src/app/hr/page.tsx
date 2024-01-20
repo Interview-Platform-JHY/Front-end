@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { WeeklySchedule } from 'src/components/schedule';
-import { DailySchedule } from 'src/components/hr/schedule';
+import { DailySchedule } from 'src/components/hr';
 import { Modal } from 'src/components/ui';
 
 export default function HR() {
